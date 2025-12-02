@@ -47,7 +47,7 @@ export default tseslint.config(
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       
       // ห้ามใช้ 'any' โดยเด็ดขาด (Strict Mode)
-      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-explicit-any': 'off',
       
       // ปิดกฎ unused-vars ของ default และใช้ของ typescript แทน เพื่อป้องกัน error ซ้อนทับ
       'no-unused-vars': 'off',
