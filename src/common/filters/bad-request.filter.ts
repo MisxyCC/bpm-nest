@@ -18,6 +18,7 @@ export class BadRequestExceptionFilter implements ExceptionFilter {
 
     this.logger.error(
       `Validation failed for request ${request.method} ${request.raw.url}. Errors: ${JSON.stringify(errorResponse.message)}`,
+      undefined,
       BadRequestExceptionFilter.name,
     );
 
