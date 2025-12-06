@@ -3,9 +3,10 @@ services:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: mssql_server
     restart: always
+    env_file: ".env"
     environment:
       ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: "Your@StrongPass1"
+      MSSQL_SA_PASSWORD: ${DB_PASSWORD}
     ports:
       - "1433:1433"
     volumes:

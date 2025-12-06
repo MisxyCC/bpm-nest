@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlserver"
+}
+
+model BackendLog {
+  id        Int      @id @default(autoincrement())
+  level     String
+  message   String   @db.NVarChar(Max)
+  context   String?
+  reqId     String?
+  timestamp DateTime @default(now())
+  rawJson   String   @db.NVarChar(Max)
+
+  @@map("backend_logs")
+}

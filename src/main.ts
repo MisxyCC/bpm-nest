@@ -5,12 +5,14 @@ import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify
 import { AppModule } from './app.module';
 import { BadRequestExceptionFilter } from './common/filters/bad-request.filter';
 import { PinoLoggerService } from './common/logger/pino.service';
+import pino from 'pino';
 
 async function bootstrap() {
   // กำหนด Logger config แบบ Object ธรรมดา
   const fastifyAdapter = new FastifyAdapter({
     logger: {
       level: 'info',
+      timestamp: pino.stdTimeFunctions.isoTime,
       // formatters, timestamp หรือ config อื่นๆ ของ pino ใส่ตรงนี้ได้เลย
     },
   });
