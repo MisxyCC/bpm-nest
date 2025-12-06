@@ -6,15 +6,19 @@ import { AppModule } from './app.module';
 import { BadRequestExceptionFilter } from './common/filters/bad-request.filter';
 import { PinoLoggerService } from './common/logger/pino.service';
 import pino from 'pino';
+import { PrismaLogStream } from './common/logger/prisma-log-stream';
 
 async function bootstrap() {
+  const prismaStream = new PrismaLogStream();
+
   // กำหนด Logger config แบบ Object ธรรมดา
   const fastifyAdapter = new FastifyAdapter({
-    logger: {
+    logger: pino({
       level: 'info',
       timestamp: pino.stdTimeFunctions.isoTime,
-      // formatters, timestamp หรือ config อื่นๆ ของ pino ใส่ตรงนี้ได้เลย
     },
+    prismaStream // ส่ง log ทั้งหมดเข้า prismaStream
+  )
   });
 
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, fastifyAdapter);

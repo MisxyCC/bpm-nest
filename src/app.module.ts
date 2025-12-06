@@ -9,14 +9,14 @@ import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
-    CatsModule, 
-    CatsModule, 
+    CatsModule,
+    CatsModule,
     LoggerModule,
     PrismaModule,
     ConfigModule.forRoot({
       isGlobal: true,
-    })
-],
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
